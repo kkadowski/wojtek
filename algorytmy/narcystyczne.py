@@ -1,0 +1,4 @@
+'''
+Liczby narcystyczne
+K>K>
+'''
