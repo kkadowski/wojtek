@@ -13,6 +13,7 @@ from PyQt5.QtGui import QPixmap
 import hashlib
 from db_conn import dbConnection
 from mess import messagebox
+from main import Ui_FormMainWindow
 
 class Ui_Form(object):
     
@@ -95,6 +96,13 @@ class Ui_Form(object):
         if row[0]==1:
             loggedas = f"You are logged as {email}"
             messagebox("Login", loggedas, "Information", "Ok")
+            
+            Form.hide()
+            self.window = QtWidgets.QWidget()
+            self.ui = Ui_FormMainWindow()
+            self.ui.setupUi(self.window)
+            self.window.show()
+            
         else:
             messagebox("Login problem", "Your email or password is not correct.", "Critical", "Cancel")            
         
