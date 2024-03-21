@@ -4,7 +4,7 @@ import psycopg2
 from psycopg2 import connect
 from psycopg2.extras import DictConnection
 from configparser import ConfigParser
-
+from mess import messagebox
 
 class dbConnection:
     # wczytanie danych
@@ -29,9 +29,9 @@ class dbConnection:
                                          user=self.db['user'],
                                          password=self.db['password']
                                          )
-            print("połączono...")
+          
         except (Exception, psycopg2.DatabaseError) as err:
-            print(f"Database connection error: {err}")
+            messagebox(f"Database connection error", f"Error: {err}", "Warning", "Cancel")
      
    
     # zamykanie połączenia
@@ -57,10 +57,12 @@ class dbConnection:
         curs = self.conn.cursor()
         try:
             curs.execute(query, args)
+            self.commit()
         except Exception as ex:
             self.conn.rollback()
             curs.close()
             raise ex
+            # mess
         return curs   
         
     # rekord

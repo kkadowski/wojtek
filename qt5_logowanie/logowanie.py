@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 import hashlib
 from db_conn import dbConnection
+from mess import messagebox
 
 class Ui_Form(object):
     
@@ -79,26 +80,7 @@ class Ui_Form(object):
             self.lineEdit_password.setEchoMode(QtWidgets.QLineEdit.Password)
             self.stanPass = True
         
-    def messagebox(self, title, message, icon, StandardButtons):
-        mess = QtWidgets.QMessageBox()
-        mess.setWindowTitle(title)
-        mess.setText(message)
-        if icon == "Information":
-            mess.setIcon(QtWidgets.QMessageBox.Information)
-        elif icon == "Critical":
-            mess.setIcon(QtWidgets.QMessageBox.Critical)
-        elif icon == "Question":
-            mess.setIcon(QtWidgets.QMessageBox.Question)
-        elif icon == "Warning":
-            mess.setIcon(QtWidgets.QMessageBox.Warning)
-        else:
-            mess.setIcon(QtWidgets.QMessageBox.NoIcon)
-        
-        if StandardButtons == "Ok":
-            mess.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        elif StandardButtons == "Cancel":
-            mess.setStandardButtons(QtWidgets.QMessageBox.Cancel)
-        mess.exec_()       
+       
     
     
     def logowanie(self):
@@ -112,9 +94,9 @@ class Ui_Form(object):
         db.close()
         if row[0]==1:
             loggedas = f"You are logged as {email}"
-            self.messagebox("Login", loggedas, "Information", "Ok")
+            messagebox("Login", loggedas, "Information", "Ok")
         else:
-            self.messagebox("Login problem", "Your email or password is not correct.", "Critical", "Cancel")            
+            messagebox("Login problem", "Your email or password is not correct.", "Critical", "Cancel")            
         
 
     def retranslateUi(self, Form):
