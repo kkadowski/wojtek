@@ -59,7 +59,7 @@ class Ui_FormAddressList(object):
         for i, row in enumerate(rows):
             for j, val in enumerate(row):
                 self.tableWidget.setItem(i, j, QTableWidgetItem(str(val)))
-        self.tableWidget.repaint()     
+        #self.tableWidget.repaint()     
 
         
         
